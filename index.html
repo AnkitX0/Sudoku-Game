@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sudoku Game</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  
+
+</head>
+<body>
+    <div id="timer">⏱ Time: 00:00</div>
+<div id="message"></div>
+
+
+    <div id="game-container">
+        <h1>Sudoku Game</h1>
+        <div id="sudoku-board"></div>
+        <div>
+          <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+          <button onclick="generateNewGame()">New Game</button>
+          <button onclick="checkSolution()">Check</button>
+        </div>
+        <div id="message"></div>
+      </div>
+      <button onclick="showAnswer()">Show Answer</button>
+
+      
+      <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+      <script src="script.js"></script>
+</body>
+</html>
