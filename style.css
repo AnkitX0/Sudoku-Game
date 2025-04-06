@@ -1,183 +1,204 @@
 * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 30px;
-    text-align: center;
-    color: #222;
-  }
-  
-  h1 {
-    color: #0066cc;
-    margin-bottom: 20px;
-  }
-  
-  #game-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  #sudoku-board {
-    display: grid;
-    grid-template-columns: repeat(9, 50px);
-    grid-template-rows: repeat(9, 50px);
-    border: 3px solid #0066cc;
-    gap: 0;
-    background-color: #0066cc;
-  }
-  
-  input {
-    width: 48px;
-    height: 48px;
-    font-size: 20px;
-    text-align: center;
-    background-color: #fff;
-    border: none;
-    outline: none;
-    color: #000;
-    transition: background-color 0.2s ease;
-  }
-  
-  input:hover {
-    background-color: #e6f2ff;
-  }
-  
-  input:focus {
-    background-color: #d0e7ff;
-    border: 2px solid #3399ff;
-  }
-  
-  input:read-only {
-    background-color: #d9d9d9;
-    font-weight: bold;
-    color: #000;
-  }
-  
-  /* BOLD 3x3 BOXES */
-  #sudoku-board input {
-    border: 1px solid #ccc;
-  }
-  
-  /* Vertical thick lines */
-  #sudoku-board input:nth-child(3n+1) {
-    border-left: 3px solid #0066cc;
-  }
-  #sudoku-board input:nth-child(3n) {
-    border-right: 3px solid #0066cc;
-  }
-/* Horizontal thick lines after every 3 rows */
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 3vw; /* Changed from fixed 30px to relative 3vw */
+  text-align: center;
+  color: #222;
+}
+
+h1 {
+  color: #0066cc;
+  margin-bottom: 2vw; /* Changed from 20px to 2vw */
+  font-size: clamp(1.5rem, 4vw, 3rem); /* Responsive font size */
+}
+
+#game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vw; /* Changed from 20px to 2vw */
+  max-width: 100%;
+}
+
+#sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(30px, 1fr)); /* Responsive columns */
+  grid-template-rows: repeat(9, minmax(30px, 1fr)); /* Responsive rows */
+  border: 3px solid #0066cc;
+  gap: 0;
+  background-color: #0066cc;
+  width: min(90vw, 600px); /* Max width with responsiveness */
+  height: min(90vw, 600px);
+  margin: 0 auto;
+}
+
+input {
+  width: 100%;
+  height: 100%;
+  font-size: clamp(14px, 2.5vw, 20px); /* Responsive font size */
+  text-align: center;
+  background-color: #fff;
+  border: none;
+  outline: none;
+  color: #000;
+  transition: background-color 0.2s ease;
+}
+
+input:hover {
+  background-color: #e6f2ff;
+}
+
+input:focus {
+  background-color: #d0e7ff;
+  border: 2px solid #3399ff;
+}
+
+input:read-only {
+  background-color: #d9d9d9;
+  font-weight: bold;
+  color: #000;
+}
+
+/* BOLD 3x3 BOXES */
 #sudoku-board input {
-    border-bottom: 1px solid #ccc;
-  }
-  
-  /* Apply thick bottom border to rows 3, 6 */
-  #sudoku-board input:nth-child(9n+1),
-  #sudoku-board input:nth-child(9n+2),
-  #sudoku-board input:nth-child(9n+3),
-  #sudoku-board input:nth-child(9n+4),
-  #sudoku-board input:nth-child(9n+5),
-  #sudoku-board input:nth-child(9n+6),
-  #sudoku-board input:nth-child(9n+7),
-  #sudoku-board input:nth-child(9n+8),
-  #sudoku-board input:nth-child(9n+9) {
-    border-bottom: 1px solid #ccc;
-  }
-  
-  /* Row groups: after 3rd and 6th row */
-  #sudoku-board input:nth-child(n+19):nth-child(-n+27),
-  #sudoku-board input:nth-child(n+46):nth-child(-n+54) {
-    border-bottom: 3px solid #0066cc;
-  }
-  
-  
-  /* Controls */
-  button, select {
-    padding: 10px 16px;
-    font-size: 16px;
-    border-radius: 6px;
-    border: none;
-    background-color: #0066cc;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  button:hover, select:hover {
-    background-color: #004d99;
-  }
-  
-  #message {
-    margin-top: 15px;
-    font-size: 16px;
-    font-weight: 600;
-  }
-  /* Celebration Popup Styles */
+  border: 1px solid #ccc;
+}
+
+/* Vertical thick lines */
+#sudoku-board input:nth-child(3n+1) {
+  border-left: 3px solid #0066cc;
+}
+#sudoku-board input:nth-child(3n) {
+  border-right: 3px solid #0066cc;
+}
+
+/* Horizontal thick lines */
+#sudoku-board input {
+  border-bottom: 1px solid #ccc;
+}
+
+/* Row groups: after 3rd and 6th row */
+#sudoku-board input:nth-child(n+19):nth-child(-n+27),
+#sudoku-board input:nth-child(n+46):nth-child(-n+54) {
+  border-bottom: 3px solid #0066cc;
+}
+
+/* Controls */
+button, select {
+  padding: clamp(8px, 1.5vw, 12px) clamp(12px, 2vw, 16px); /* Responsive padding */
+  font-size: clamp(14px, 2vw, 16px); /* Responsive font size */
+  border-radius: 6px;
+  border: none;
+  background-color: #0066cc;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover, select:hover {
+  background-color: #004d99;
+}
+
+#message {
+  margin-top: 1.5vw; /* Changed from 15px to 1.5vw */
+  font-size: clamp(14px, 2vw, 16px); /* Responsive font size */
+  font-weight: 600;
+}
+
+/* Celebration Popup Styles */
 #celebration-popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    animation: fadeIn 0.5s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.5s ease;
 }
 
 .popup-content {
-    background: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 0 20px rgba(0, 102, 204, 0.3);
-    animation: bounceIn 0.5s ease;
+  background: #fff;
+  padding: clamp(20px, 3vw, 30px); /* Responsive padding */
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 102, 204, 0.3);
+  animation: bounceIn 0.5s ease;
+  width: 90%;
+  max-width: 400px;
 }
 
 .popup-content h2 {
-    color: #0066cc;
-    margin: 0 0 15px;
+  color: #0066cc;
+  margin: 0 0 1.5vw; /* Changed from 15px to 1.5vw */
+  font-size: clamp(1.2rem, 3vw, 2rem);
 }
 
 .popup-content p {
-    margin: 0 0 20px;
-    font-size: 18px;
+  margin: 0 0 2vw; /* Changed from 20px to 2vw */
+  font-size: clamp(16px, 2.5vw, 18px);
 }
 
 .popup-content button {
-    padding: 10px 20px;
-    background: #0066cc;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+  padding: clamp(8px, 1.5vw, 10px) clamp(15px, 2.5vw, 20px);
+  background: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .popup-content button:hover {
-    background: #004d99;
+  background: #004d99;
 }
 
 /* Animations */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
 @keyframes bounceIn {
-    0% { transform: scale(0.3); opacity: 0; }
-    50% { transform: scale(1.05); opacity: 1; }
-    100% { transform: scale(1); }
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+/* Media Queries for smaller screens */
+@media (max-width: 600px) {
+  body {
+      padding: 2vw;
+  }
+
+  #sudoku-board {
+      width: 95vw;
+      height: 95vw;
+  }
+
+  input {
+      font-size: clamp(12px, 2.8vw, 16px);
+  }
+
+  button, select {
+      padding: clamp(6px, 1.2vw, 10px) clamp(10px, 1.8vw, 14px);
+      font-size: clamp(12px, 2vw, 14px);
+  }
+
+  .popup-content {
+      padding: 4vw;
+  }
 }
